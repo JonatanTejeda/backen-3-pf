@@ -1,0 +1,49 @@
+components:
+  schemas:
+    Users:
+      RespuestaRegistro:
+        type: object
+        properties:
+          email:
+            type: string
+            description: Correo electrónico del usuario
+          role:
+            type: string
+            description: Rol del usuario
+          cart:
+            type: array
+            items:
+              type: string
+              description: ID del carrito
+        example:
+          email: matias.sanchez@example.com
+          role: user
+          cart: []
+      NotFound:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error
+        example:
+          msg: No se encontró el usuario con el ID proporcionado
+      BadRequest:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error de validación
+        example:
+          msg: Error de validación en los datos del usuario
+      InternalServerError:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error interno
+        example:
+          msg: Error interno del servidor
+      RespuestaGetAll:
+        type: array
+        items:
+          $ref: '#/components/schemas/Users/RespuestaRegistro'

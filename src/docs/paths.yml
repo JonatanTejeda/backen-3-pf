@@ -1,0 +1,88 @@
+paths:
+  /api/auth/signup:
+    post:
+      tags:
+        - Users
+      summary: Registro de un nuevo usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaBodyUser'
+        required: true
+      responses:
+        201:
+          description: Usuario registrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/RespuestaRegistro'
+        400:
+          description: Datos del usuario inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/BadRequest'
+        500:
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/InternalServerError'
+
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Recuperar la lista de usuarios
+      responses:
+        200:
+          description: Lista de usuarios recuperada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/RespuestaGetAll'
+        404:
+          description: No se encontraron usuarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/NotFound'
+        500:
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/InternalServerError'
+
+  /api/users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Obtener usuario por ID
+      parameters:
+        - in: path
+          name: userId
+          required: true  
+          description: ID del usuario a recuperar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/RespuestaRegistro'
+        404:
+          description: Usuario no encontrado con el ID proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/NotFound'
+        500:
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users/InternalServerError'

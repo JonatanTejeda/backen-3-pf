@@ -1,0 +1,37 @@
+components:
+  parameters:
+    schemas:
+      SchemaBodyUser:
+        type: object
+        required:
+          - first_name
+          - last_name
+          - email
+          - age
+          - password
+          - role
+        properties:
+          first_name:
+            type: string
+            description: Nombre del usuario
+            example: Matías
+          last_name:
+            type: string
+            description: Apellido del usuario
+            example: Sánchez
+          email:
+            type: string
+            description: Correo electrónico del usuario
+            example: matias.sanchez@example.com
+          age:
+            type: integer
+            description: Edad del usuario
+            example: 30
+          password:
+            type: string
+            description: Contraseña del usuario
+            example: password123
+          role:
+            type: string
+            description: Rol del usuario
+            example: user
